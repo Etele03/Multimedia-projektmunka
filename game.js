@@ -53,8 +53,6 @@ function update() {
     bombs.forEach(bomb => {
         if(bomb.x < player.x + player.width && bomb.x + 10 > player.x && bomb.y < player.y + player.height && bomb.y + 10 > player.y){
             gameOver = true;
-            alert('Game Over!');
-            window.location.href = 'scoreboard.html';
         }
     });
 }
@@ -74,6 +72,19 @@ function draw(){
     // bombák
     ctx.fillStyle = 'red';
     bombs.forEach(bomb => ctx.fillRect(bomb.x, bomb.y, 10, 10));
+
+    if(gameOver){
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 48px Arial';
+        ctx.textAlign='center';
+        ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
+
+        setTimeout(() => {
+            window.location.href = 'scoreboard.html';
+        }, 2000);
+        
+    }
+
 }
 
 function gameLopop(){
