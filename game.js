@@ -54,6 +54,7 @@ function update() {
         if(bomb.x < player.x + player.width && bomb.x + 10 > player.x && bomb.y < player.y + player.height && bomb.y + 10 > player.y){
             gameOver = true;
             alert('Game Over!');
+            window.location.href = 'scoreboard.html';
         }
     });
 }

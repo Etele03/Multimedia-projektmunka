@@ -1,13 +1,23 @@
-body {
-    margin: 0;
-    background: #222;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+#gameBody{
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+body{
+  background-color: #222831;
+  color: #EEEEEE;
+}
   
-  canvas {
-    background: black;
-    border: 2px solid white;
-  }
+
+canvas {
+  background: black;
+  border: 2px solid #00ADB5;  
+}
+
+.jatekInditas{
+  background-color: #00ADB5;
+  color:#222831;
+}
