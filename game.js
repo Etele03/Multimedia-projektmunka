@@ -31,13 +31,10 @@ function update() {
 
     // jatekos mozgása
 
-    if(keys['ArrowLeft'] && player.x > 0){
-        player.x -= player.speed;
-    }
+    if(keys['ArrowLeft'] && player.x > 0) player.x -= player.speed;
 
-    if(keys['ArrowRight'] && player.x + player.width < canvas.width){
-        player.x += player.speed;
-    }
+    if(keys['ArrowRight'] && player.x + player.width < canvas.width) player.x += player.speed;
+
 
     // bombázás
     if(Date.now() - utolsoBombaIdo > bombInterval){
