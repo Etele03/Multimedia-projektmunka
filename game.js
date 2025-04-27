@@ -1,15 +1,24 @@
 const canvas = document.getElementById('jatekter');
 const ctx = canvas.getContext('2d');
 
+//          PLAYER
+
 let player = { x: (canvas.width -40) / 2, y: 600, width: 40, height: 40, speed: 5 };
+
+//          PLANE
+
 let plane =  { x: 0, y: 50, width: 200, height: 100, speed: 1.5 };
+let planeImage = new Image();
+planeImage.src = './images/Characters/bombardinoCrocodilo.png'
 let bombs = [];
 let bombSpeed = 1.5;
+
+//          GAME
+
 let gameOver = false;
 let startTime = Date.now();
 let elapsedTime = 0;
-let planeImage = new Image();
-planeImage.src = 'bombardinoCrocodilo.png'
+
 
 planeImage.onload = function() {
     requestAnimationFrame(gameLoop); // Csak akkor indul el, ha a kép betöltődött
