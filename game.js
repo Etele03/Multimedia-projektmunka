@@ -3,7 +3,10 @@ const ctx = canvas.getContext('2d');
 
 //          PLAYER
 
-let player = { x: (canvas.width -40) / 2, y: 600, width: 40, height: 40, speed: 5 };
+let player = { x: (canvas.width -40) / 2, y: 600, width: 83, height: 108, speed: 5 };
+let playerImage = new Image();
+playerImage.src = './images/Characters/Tung_tung_tung_sahur.png'
+let playerBalra;
 
 //          PLANE
 
@@ -48,9 +51,15 @@ function update() {
 
     // jatekos mozgása
 
-    if(keys['ArrowLeft'] && player.x > 0) player.x -= player.speed;
+    if(keys['ArrowLeft'] && player.x > 0){
+        player.x -= player.speed;
+        playerBalra = true;
+    } 
 
-    if(keys['ArrowRight'] && player.x + player.width < canvas.width) player.x += player.speed;
+    if(keys['ArrowRight'] && player.x + player.width < canvas.width){
+        player.x += player.speed;
+        playerBalra = false;
+    } 
 
 
     // bombázás
@@ -94,8 +103,17 @@ function draw(){
 
 
     // player
-    ctx.fillStyle='green';
-    ctx.fillRect(player.x, player.y, player.width, player.height);
+    if(!playerBalra){
+        ctx.save();
+        ctx.scale(-1, 1); // tükrözés
+        ctx.drawImage(playerImage, -player.x - player.width, player.y, player.width, player.height);
+        ctx.restore();
+    } else {
+        ctx.drawImage(playerImage, player.x, player.y, player.width, player.height); 
+    }
+    
+
+    //ctx.drawImage(playerImage, player.x, player.y, player.width, player.height);
 
     // bombák
     ctx.fillStyle = 'red';
