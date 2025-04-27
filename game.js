@@ -1,11 +1,19 @@
 const canvas = document.getElementById('jatekter');
 const ctx = canvas.getContext('2d');
 
-let player = { x: 280, y: 500, width: 40, height: 40, speed: 5 };
-let plane =  { x: 0, y: 50, width: 60, height: 30, speed: 2 };
+let player = { x: (canvas.width -40) / 2, y: 600, width: 40, height: 40, speed: 5 };
+let plane =  { x: 0, y: 50, width: 200, height: 100, speed: 1.5 };
 let bombs = [];
-let bombSpeed = 2;
+let bombSpeed = 1.5;
 let gameOver = false;
+let startTime = Date.now();
+let elapsedTime = 0;
+let planeImage = new Image();
+planeImage.src = 'bombardinoCrocodilo.png'
+
+planeImage.onload = function() {
+    requestAnimationFrame(gameLoop); // Csak akkor indul el, ha a kép betöltődött
+};
 
 // játékos vezérlése
 
@@ -42,9 +50,7 @@ function update() {
         utolsoBombaIdo = Date.now();
     
         // nehezítés
-        if(bombInterval > 500){
-            bombInterval -= 100;
-        }
+
     }
 
     bombs.forEach(bomb => bomb.y += bombSpeed);
@@ -59,11 +65,24 @@ function update() {
 
 
 function draw(){
+
+    if(!gameOver){
+        elapsedTime = Math.floor((Date.now() - startTime) / 1000 );
+    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // repcsi
-    ctx.fillStyle='white';
-    ctx.fillRect(plane.x, plane.y, plane.width, plane.height);
+    if (plane.speed > 0) {
+        ctx.save();
+        ctx.scale(-1, 1); // tükrözés
+        ctx.drawImage(planeImage, -plane.x - plane.width, plane.y, plane.width, plane.height);
+        ctx.restore();
+    } else {
+        ctx.drawImage(planeImage, plane.x, plane.y, plane.width, plane.height); 
+    }
+
+
 
     // player
     ctx.fillStyle='green';
@@ -72,6 +91,12 @@ function draw(){
     // bombák
     ctx.fillStyle = 'red';
     bombs.forEach(bomb => ctx.fillRect(bomb.x, bomb.y, 10, 10));
+
+    ctx.fillStyle = 'white';
+    ctx.font = '24px Arial'
+    ctx.textAlign = 'left'
+    ctx.fillText(`Idő: ${elapsedTime} mp`, 20, 30);
+
 
     if(gameOver){
         ctx.fillStyle = 'white';
@@ -84,18 +109,19 @@ function draw(){
         }, 2000);
         
     }
+    
 
 }
 
-function gameLopop(){
+function gameLoop(){
     update();
     draw();
     if(!gameOver){
-        requestAnimationFrame(gameLopop);
+        requestAnimationFrame(gameLoop);
     }
 }
 
-gameLopop();
+gameLoop();
 
 
 
