@@ -6,7 +6,7 @@ const ctx = canvas.getContext('2d');
 let player = { x: (canvas.width -40) / 2, y: 600, width: 83, height: 108, speed: 5 };
 let playerImage = new Image();
 
-const selectedCharacter = localStorage.getItem('selectedCharacter') || 'alapKarakter.png';  // memóriábol kiveszi hogy mit választottunk
+const selectedCharacter = localStorage.getItem('selectedCharacter') || './images/Characters/Tung.pngg';  // memóriábol kiveszi hogy mit választottunk
 playerImage.src = selectedCharacter;
 
 
