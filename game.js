@@ -6,20 +6,12 @@ const ctx = canvas.getContext('2d');
 let player = { x: (canvas.width -40) / 2, y: 600, width: 83, height: 108, speed: 5 };
 let playerImage = new Image();
 
-let tungtung = true;
-let cappuchino = false;
-let Brr_Brr_Patapim = false;
+const selectedCharacter = localStorage.getItem('selectedCharacter') || 'alapKarakter.png';  // memóriábol kiveszi hogy mit választottunk
+playerImage.src = selectedCharacter;
+
+
 
 let playerBalra = true;
-
-if(tungtung){
-    playerImage.src = './images/Characters/Tung_tung_tung_sahur.png'
-}else if(cappuchino){
-    playerImage.src = './images/Characters/Cappuccino_Assassino.png'
-}else if(Brr_Brr_Patapim){
-    playerImage.src = './images/Characters/Brr_Brr_Patapim.png'
-}
-
 
 
 //          PLANE
@@ -163,9 +155,3 @@ function gameLoop(){
 }
 
 gameLoop();
-
-
-
-
-
-

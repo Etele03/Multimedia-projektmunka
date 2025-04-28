@@ -21,3 +21,9 @@ canvas {
   background-color: #00ADB5;
   color:#222831;
 }
+
+.character {
+  width: 150px;
+  cursor: pointer;
+  margin: 20px;
+}

@@ -2,15 +2,21 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Karakter választás</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>Válassz karaktert!</h1>
 
+    <img src="./images/Characters/Tung.png" class="character" onclick="selectCharacter('./images/Characters/Tung.png')">
+    <img src="./images/Characters/Cappuccino.png" class="character" onclick="selectCharacter('./images/Characters/Cappuccino.png')">
+    <img src="./images/Characters/Patapim.png" class="character" onclick="selectCharacter('./images/Characters/Patapim.png')">
 
-
-
-
+    <script>
+        function selectCharacter(characterImage) {
+            localStorage.setItem('selectedCharacter', characterImage);
+            window.location.href = 'index.html'; // átdob a játék oldalra
+        }
+    </script>
 </body>
 </html>
