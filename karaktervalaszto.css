@@ -26,6 +26,11 @@
     border-radius: 10px;
     margin-bottom: 10px;
   }
+
+  .character-card.selected {
+    outline: 4px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc;
+  }
   
   .character-name {
     font-size: 1.2em;

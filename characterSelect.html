@@ -10,15 +10,15 @@
   <div class="container">
     <h1>Válassz egy karaktert</h1>
     <div class="character-select">
-      <div class="character-card" onclick="selectCharacter('./images/Characters/Tung.png')">
+      <div class="character-card" data-character="./images/Characters/Tung.png">
         <img src="./images/Characters/Tung.png" alt="Tung">
         <div class="character-name">Tung Tung</div>
       </div>
-      <div class="character-card" onclick="selectCharacter('./images/Characters/Cappuccino.png')">
+      <div class="character-card" data-character="./images/Characters/Cappuccino.png">
         <img src="./images/Characters/Cappuccino.png" alt="Cappuccino">
         <div class="character-name">Cappuccino</div>
       </div>
-      <div class="character-card" onclick="selectCharacter('./images/Characters/Patapim.png')">
+      <div class="character-card" data-character="./images/Characters/Patapim.png">
         <img src="./images/Characters/Patapim.png" alt="Patapim">
         <div class="character-name">Patapim</div>
       </div>
@@ -30,10 +30,21 @@
   </div>
 
   <script>
-    function selectCharacter(imagePath) {
-      localStorage.setItem('selectedCharacter', imagePath);
-      window.location.href = 'jatek.html';
-    }
+    const cards = document.querySelectorAll('.character-card');
+    const selectedCharacter = localStorage.getItem('selectedCharacter');
+  
+    cards.forEach(card => {
+      const imagePath = card.getAttribute('data-character');
+      if (imagePath === selectedCharacter) {
+        card.classList.add('selected');
+      }
+  
+      card.addEventListener('click', () => {
+        localStorage.setItem('selectedCharacter', imagePath);
+        cards.forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+      });
+    });
   </script>
 </body>
 </html>
