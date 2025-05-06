@@ -30,8 +30,10 @@
   </div>
 
   <script>
+
     const cards = document.querySelectorAll('.character-card');
     const selectedCharacter = localStorage.getItem('selectedCharacter');
+    const clickSound = new Audio('sounds/button-click-sound.mp3');
   
     cards.forEach(card => {
       const imagePath = card.getAttribute('data-character');
@@ -40,11 +42,16 @@
       }
   
       card.addEventListener('click', () => {
+        clickSound.currentTime = 0.21;
+        clickSound.play();
+
         localStorage.setItem('selectedCharacter', imagePath);
         cards.forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
       });
+
     });
+
   </script>
 </body>
 </html>
