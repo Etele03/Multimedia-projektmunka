@@ -1,0 +1,38 @@
+.character-select {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  
+  .character-card {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .character-card:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .character-card img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .character-name {
+    font-size: 1.2em;
+    color: white;
+  }
+  
+  .back-button {
+    margin-top: 40px;
+    text-align: center;
+  }

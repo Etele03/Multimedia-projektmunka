@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <title>Karakter választás</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Karakterválasztás</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="karaktervalaszto.css">
 </head>
-<body id="Characterbody">
-
-    <h1>Válassz karaktert</h1>
-
-    <div class="character-selection">
-      <div class="character-container">
-          <div class="character-name">Tung Tung Tung Sahur</div>
-        <img src="./images/Characters/Tung.png" class="character" onclick="selectCharacter('./images/Characters/Tung.png')">
+<body>
+  <div class="container">
+    <h1>Válassz egy karaktert</h1>
+    <div class="character-select">
+      <div class="character-card" onclick="selectCharacter('./images/Characters/Tung.png')">
+        <img src="./images/Characters/Tung.png" alt="Tung">
+        <div class="character-name">Tung Tung</div>
       </div>
-      <div class="character-container">
-          <div class="character-name">Cappuccino Assassino</div>
-        <img src="./images/Characters/Cappuccino.png" class="character" onclick="selectCharacter('./images/Characters/Cappuccino.png')">
+      <div class="character-card" onclick="selectCharacter('./images/Characters/Cappuccino.png')">
+        <img src="./images/Characters/Cappuccino.png" alt="Cappuccino">
+        <div class="character-name">Cappuccino</div>
       </div>
-      <div class="character-container">
-          <div class="character-name">Brr Brr Patapim</div>
-          <img src="./images/Characters/Patapim.png" class="character" onclick="selectCharacter('./images/Characters/Patapim.png')">
+      <div class="character-card" onclick="selectCharacter('./images/Characters/Patapim.png')">
+        <img src="./images/Characters/Patapim.png" alt="Patapim">
+        <div class="character-name">Patapim</div>
       </div>
     </div>
 
+    <div class="back-button">
+      <button onclick="window.location.href='index.html'">Vissza a főmenübe</button>
+    </div>
+  </div>
 
-    <script>
-        function selectCharacter(characterImage) {
-            localStorage.setItem('selectedCharacter', characterImage);
-            window.location.href = 'index.html'; // átdob a játék oldalra
-        }
-    </script>
+  <script>
+    function selectCharacter(imagePath) {
+      localStorage.setItem('selectedCharacter', imagePath);
+      window.location.href = 'jatek.html';
+    }
+  </script>
 </body>
 </html>

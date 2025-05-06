@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="scoreboard.css">
 </head>
 <body>
+  <div class="container">
+    <h1>🏆 Top 10 Játékos</h1>
+    <ol id="leaderboard"></ol>
+    <div class="buttons">
+        <button onclick="window.location.href='index.html'">Vissza a főmenübe</button>
+        <button onclick="window.location.href='game.html'">Játék újraindítása</button>
+      </div>
+  </div>
 
-    <h1>Itt a vége kicsi</h1>
-    
+  <script>
+    const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+    const list = document.getElementById("leaderboard");
+
+    leaderboard.forEach(entry => {
+      const li = document.createElement("li");
+      li.textContent = `${entry.name} – ${entry.score} pont`;
+      list.appendChild(li);
+    });
+  </script>
 </body>
 </html>

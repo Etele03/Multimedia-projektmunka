@@ -1,6 +1,8 @@
 const canvas = document.getElementById('jatekter');
 const ctx = canvas.getContext('2d');
 
+let pontMentve = false;
+
 //          PLAYER
 
 let player = { x: (canvas.width -40) / 2, y: 600, width: 83, height: 108, speed: 5 };
@@ -131,18 +133,30 @@ function draw(){
     ctx.fillText(`Idő: ${elapsedTime} mp`, 20, 30);
 
 
-    if(gameOver){
+    if (gameOver){
+        if (!pontMentve) {
+            pontMentve = true;
+    
+            const score = elapsedTime * 10;
+            const name = prompt("Add meg a neved:");
+            if (name) {
+                let scores = JSON.parse(localStorage.getItem("leaderboard")) || [];
+                scores.push({ name: name, score: score });
+                scores.sort((a, b) => b.score - a.score);
+                scores = scores.slice(0, 10);
+                localStorage.setItem("leaderboard", JSON.stringify(scores));
+            }
+    
+            setTimeout(() => {
+                window.location.href = 'scoreboard.html';
+            }, 2000);
+        }
+    
         ctx.fillStyle = 'white';
         ctx.font = 'bold 48px Arial';
         ctx.textAlign='center';
         ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
-
-        setTimeout(() => {
-            window.location.href = 'scoreboard.html';
-        }, 2000);
-        
     }
-    
 
 }
 
