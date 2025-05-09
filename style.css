@@ -6,6 +6,11 @@
   height: 100vh;
 }
 
+#jatekter{
+  background-image: url(./images/background-pic.png);
+  background-size: cover;
+}
+
 body{
   margin: 0;
   font-family: 'Arial', sans-serif;

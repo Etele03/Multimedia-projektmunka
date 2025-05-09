@@ -5,7 +5,7 @@ let pontMentve = false;
 
 //          PLAYER
 
-let player = { x: (canvas.width -40) / 2, y: 600, width: 83, height: 108, speed: 5 };
+let player = { x: (canvas.width -40) / 2, y: 1000, width: 83, height: 108, speed: 1.5 };
 let playerImage = new Image();
 
 const selectedCharacter = localStorage.getItem('selectedCharacter') || './images/Characters/Tung.pngg';  // memóriábol kiveszi hogy mit választottunk
@@ -18,17 +18,18 @@ let playerBalra = true;
 
 //          PLANE
 
-let plane =  { x: 0, y: 50, width: 200, height: 100, speed: 1.5 };
+let plane =  { x: 0, y: 50, width: 200, height: 100, speed: 0.7 };
 let planeImage = new Image();
 planeImage.src = './images/Characters/bombardinoCrocodilo.png'
 let bombs = [];
-let bombSpeed = 1.5;
+let bombSpeed = 1;
 
 //          GAME
 
 let gameOver = false;
 let startTime = Date.now();
 let elapsedTime = 0;
+
 
 
 planeImage.onload = function() {
@@ -42,7 +43,7 @@ document.addEventListener('keydown', (e) => keys[e.key] = true)
 document.addEventListener('keyup', (e) => keys[e.key] = false)
 
 // bomba dopás timer
-let bombInterval = 2000; 
+let bombInterval = 1000; 
 let utolsoBombaIdo = Date.now();
 
 function update() {
