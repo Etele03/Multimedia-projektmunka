@@ -2,6 +2,7 @@ const canvas = document.getElementById('jatekter');
 const ctx = canvas.getContext('2d');
 
 let pontMentve = false;
+let freezeUntil = 0;
 
 //          PLAYER
 
@@ -60,12 +61,12 @@ function update() {
 
     // jatekos mozgása
 
-    if(keys['ArrowLeft'] && player.x > 0){
+    if(Date.now() > freezeUntil && keys['ArrowLeft'] && player.x > 0){
         player.x -= player.speed;
         playerBalra = true;
     } 
 
-    if(keys['ArrowRight'] && player.x + player.width < canvas.width){
+    if(Date.now() > freezeUntil && keys['ArrowRight'] && player.x + player.width < canvas.width){
         player.x += player.speed;
         playerBalra = false;
     } 
@@ -73,7 +74,23 @@ function update() {
 
     // bombázás
     if(Date.now() - utolsoBombaIdo > bombInterval){
-        bombs.push({x: plane.x + plane.width/2, y: plane.y + plane.height });
+        const randomType = Math.random();
+        let bomb = {
+            x: plane.x + plane.width/2,
+            y: plane.y + plane.height,
+            width: 10,
+            height: 10,
+            speed: bombSpeed,
+            type: 'normal',
+            color: 'red'
+        };
+
+        if(randomType < 0.2){
+            bomb.type = 'freeze';
+            bomb.color = 'lightblue';
+        }
+
+        bombs.push(bomb)
         utolsoBombaIdo = Date.now();
     
         // nehezítés
@@ -82,12 +99,27 @@ function update() {
 
     bombs.forEach(bomb => bomb.y += bombSpeed);
 
+
     // ütközés
-    bombs.forEach(bomb => {
-        if(bomb.x < player.x + player.width && bomb.x + 10 > player.x && bomb.y < player.y + player.height && bomb.y + 10 > player.y){
+    let collidedBombIndexes = [];
+
+   bombs.forEach((bomb, index) => {
+    if (
+        bomb.x < player.x + player.width &&
+        bomb.x + bomb.width > player.x &&
+        bomb.y < player.y + player.height &&
+        bomb.y + bomb.height > player.y
+    ) {
+        if (bomb.type === 'freeze') {
+            freezeUntil = Date.now() + 3000;
+            collidedBombIndexes.push(index); // jegyezzük meg
+        } else {
             gameOver = true;
         }
-    });
+    }
+});
+    // talált bombák eltávolítása
+    bombs = bombs.filter((_, index) => !collidedBombIndexes.includes(index));
 }
 
 
@@ -125,8 +157,12 @@ function draw(){
     //ctx.drawImage(playerImage, player.x, player.y, player.width, player.height);
 
     // bombák
-    ctx.fillStyle = 'red';
-    bombs.forEach(bomb => ctx.fillRect(bomb.x, bomb.y, 10, 10));
+
+    bombs.forEach(bomb=>{
+        ctx.fillStyle = bomb.color || 'red';
+        ctx.fillRect(bomb.x, bomb.y, bomb.width || 10, bomb.height || 10);
+    });
+
 
     ctx.fillStyle = 'white';
     ctx.font = '24px Arial'
