@@ -5,7 +5,7 @@ const ctx = canvas.getContext('2d');
 
 const backgroundMusic = new Audio('sounds/Sanctuary Guardians.mp3');
 backgroundMusic.loop = true; // ismétlődjön végtelenül
-backgroundMusic.volume = 0.2; // opcionálisan halkabbra
+backgroundMusic.volume = 0.1; // opcionálisan halkabbra
 
 
 let pontMentve = false;
