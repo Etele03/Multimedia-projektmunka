@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Beállítások</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Nehézségi szint kiválasztása</h1>
+      <div class="difficulty-buttons">
+        <div class="difficulty-card" data-level="easy">Könnyű</div>
+        <div class="difficulty-card" data-level="medium">Közepes</div>
+        <div class="difficulty-card" data-level="hard">Nehéz</div>
+    </div>
+
+    <br>
+    <button onclick="window.location.href='index.html'">Vissza a főmenübe</button>
+  </div>
+
+  <script>
+
+
+
+  </script>
+
+  <script>
+  const cards = document.querySelectorAll('.difficulty-card');
+  const selected = localStorage.getItem('difficulty') || 'medium';
+
+    function setDifficulty(level) {
+        localStorage.setItem('difficulty', level);
+        alert('Nehézségi szint beállítva: ' + level);
+    }
+
+  cards.forEach(card => {
+    const level = card.getAttribute('data-level');
+    if (level === selected) {
+      card.classList.add('selected');
+    }
+
+    card.addEventListener('click', () => {
+      localStorage.setItem('difficulty', level);
+      cards.forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+    });
+  });
+</script>
+</body>
+</html>
