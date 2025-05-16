@@ -6,6 +6,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<button id="helpBtn">❔ Súgó</button>
+<div id="helpModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Játék súgó</h2>
+    <ul>
+      <li><strong>Irányítás:</strong> balra és jobbra nyíl (← →)</li>
+      <li><strong>Cél:</strong> kerüld el a bombákat, maradj életben minél tovább</li>
+      <li><strong>Karakterválasztás:</strong> a főmenüben választható</li>
+      <li><strong>Pontszám:</strong> eltelt idő × nehézségi szorzó</li>
+      <li><strong>Nehézség:</strong> a Beállítások menüben módosítható</li>
+      <li><strong>Minta játék:</strong> <a href="https://www.youtube.com/watch?v=fTKSOzl6bP0">Itt található</a></li>
+    </ul>
+  </div>
+</div>
+
+
   <div class="container">
     <h1>Játék Főmenü</h1>
     <div class="buttons">
@@ -14,6 +31,27 @@
       <button onclick="window.location.href='scoreboard.html'">Ranglista megtekintése</button>
       <button onclick="window.location.href='settings.html'">Beállítások</button>
     </div>
+    <p id="sui">Szabó Etele IS4C26</p>
   </div>
 </body>
+<script>
+  const modal = document.getElementById("helpModal");
+  const btn = document.getElementById("helpBtn");
+  const span = document.querySelector(".close");
+
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
 </html>
