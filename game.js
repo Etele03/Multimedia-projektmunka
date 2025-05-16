@@ -4,8 +4,8 @@ const ctx = canvas.getContext('2d');
 //          Zene
 
 const backgroundMusic = new Audio('sounds/Sanctuary Guardians.mp3');
-backgroundMusic.loop = true; // ismétlődjön végtelenül
-backgroundMusic.volume = 0.1; // opcionálisan halkabbra
+backgroundMusic.loop = true;
+backgroundMusic.volume = 0.1;
 
 
 let pontMentve = false;
@@ -127,7 +127,7 @@ function update() {
                 height: 10,
                 speed: bombSpeed + 1,
                 type: 'normal',
-                color: 'orange'
+                color: 'black'
             });
         }
 
@@ -159,8 +159,6 @@ function update() {
 
         bombs.push(bomb)
         utolsoBombaIdo = Date.now();
-    
-        // nehezítés
 
     }
 
@@ -230,8 +228,6 @@ function draw(){
         ctx.restore();
     }
     
-
-    //ctx.drawImage(playerImage, player.x, player.y, player.width, player.height);
 
     // bombák
 
